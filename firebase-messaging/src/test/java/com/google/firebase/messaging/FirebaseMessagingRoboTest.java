@@ -468,12 +468,14 @@ public final class FirebaseMessagingRoboTest {
     shadowOf(getMainLooper()).runToEndOfTasks();
     assertThat(topicSubscriber.getStore().getNextTopicOperation())
         .isEqualTo(TopicOperation.subscribe(VALID_TOPIC));
+        
   }
 
   @Test
   public void testUnsubscribeFromTopic_withPrefix() {
     firebaseMessaging.unsubscribeFromTopic(VALID_TOPIC);
     shadowOf(getMainLooper()).runToEndOfTasks();
+    System.out.println(topicSubscriber.getStore().getNextTopicOperation());
     assertThat(topicSubscriber.getStore().getNextTopicOperation())
         .isEqualTo(TopicOperation.unsubscribe(VALID_TOPIC));
   }
@@ -482,6 +484,7 @@ public final class FirebaseMessagingRoboTest {
   public void testSubscribeToTopic_invalid() {
     Task<Void> task = FirebaseMessaging.getInstance().subscribeToTopic(INVALID_TOPIC);
     shadowOf(getMainLooper()).runToEndOfTasks();
+    System.out.println(topicSubscriber.getStore().getNextTopicOperation());
     assertThat(task.getException()).isInstanceOf(IllegalArgumentException.class);
   }
 
