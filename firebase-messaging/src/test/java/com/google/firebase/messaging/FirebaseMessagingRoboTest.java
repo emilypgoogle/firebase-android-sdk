@@ -468,6 +468,7 @@ public final class FirebaseMessagingRoboTest {
     shadowOf(getMainLooper()).runToEndOfTasks();
     assertThat(topicSubscriber.getStore().getNextTopicOperation())
         .isEqualTo(TopicOperation.subscribe(VALID_TOPIC));
+        
   }
 
   @Test
